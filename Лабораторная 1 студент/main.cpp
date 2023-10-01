@@ -111,6 +111,12 @@ public:
 
 
 
+	/*add:
+* email field(char*)
+* constructor with 3 parameters
+* accessor methods
+* in the name and mail setters, implement a check for non-zero values
+* deleting allocated dynamic memory in the destructor.*/
 
 	/* добавить:
 	   * поле емайл(char*)
