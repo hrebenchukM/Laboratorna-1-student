@@ -11,6 +11,7 @@ public:
 	{
 		cout << "Constructor by def.\n";
 		name = nullptr;
+		email = nullptr;
 		age = 0;
 	}
 	Student(const char* n, int a)// Oleg 20
@@ -34,36 +35,38 @@ public:
 		char buff[20];
 		cout << "Enter name: ";
 		cin >> buff;
-		if (name != nullptr)
+		/*if (name != nullptr)
 		{
 			cout << "Delete -> " << name << "... \n";
 			delete[]name;
 		}
 		name = new char[strlen(buff) + 1];
-		strcpy_s(name, strlen(buff) + 1, buff);
-
-		char buff2[20];
+		strcpy_s(name, strlen(buff) + 1, buff);*/
+		setName(buff);
+		
 		cout << "Enter email: ";
-		cin >> buff2;
-		if (email != nullptr)
+		cin >> buff;
+		/*if (email != nullptr)
 		{
 			cout << "Delete -> " << email << "... \n";
 			delete[]email;
 		}
-		email = new char[strlen(buff2) + 1];
-		strcpy_s(email, strlen(buff2) + 1, buff2);
+		email = new char[strlen(buff) + 1];
+		strcpy_s(email, strlen(buff) + 1, buff);*/
+		setEmail(buff);
+
 
 		cout << "Enter age: ";
 		cin >> age;
 	}
 	void Print()
 	{
-		cout << "Name: " << name << "\tAge: " << age << endl;
+		cout << "Name: " << name << "\tEmail: "<<email << "\tAge: " << age << endl;
 	}
 	~Student()
 	{
 		delete[] name; // явно освобождаем память при уничтожении объекта !!!!
-		delete[] email;
+		delete[] email;// явно освобождаем память при уничтожении объекта !!!!
 		cout << "Destructor\n";
 	}
 
@@ -85,19 +88,23 @@ public:
 			cout << "Delete -> " << name << "... \n";
 			delete[]name;
 		}
-		name = n;
+		name = new char[strlen(n) + 1];
+		strcpy_s(name, strlen(n) + 1, n);
+		
 	}
 
-	void setEmail(char* e) {
+	void setEmail( char* e) {
 		if (email != nullptr)
 		{
 			cout << "Delete -> " << email << "... \n";
 			delete[]email;
 		}
-		email = e;
+		email = new char[strlen(e) + 1];
+		strcpy_s(email, strlen(e) + 1, e);
 	}
 
-	void setAge(char* a) {
+
+	void setAge(int a) {
 		age = a;
 	}
 
@@ -109,6 +116,7 @@ public:
 	   * поле емайл(char*)
 	   * конструктор  с 3я параметрами
 	   * методы аксессоры
+	   * в сеттерах имени и почты реализовать проверку на ненулевое значение 
 	   * удаление выделенной динамической памяти в деструкторе.
 	*/
 
@@ -116,7 +124,7 @@ public:
 
 int main()
 {
-	Student obj1("Oleg", 20);
+	Student obj1("Oleg","oleg@oleg.com", 20);
 	obj1.Print();
 	obj1.Input();
 	obj1.Print();
